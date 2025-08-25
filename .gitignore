@@ -1,0 +1,14 @@
+# NPM modules
+/node_modules/*
+
+# Text files
+/txt/*
+
+# Collection files
+/collections/*
+
+# Backup files
+/backup/*
+
+# Websites information files
+/info/*_info.json
