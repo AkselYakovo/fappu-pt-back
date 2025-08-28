@@ -7,7 +7,7 @@ const jsonFilePath = path.join(
   `${website}.json`
 )
 
-function rewriteFaultyIndexes() {
+function rewriteFaultyIndexes(website) {
   let numChanges = 0
   const data = fs.readFileSync(jsonFilePath, { encoding: 'utf8' })
   const entries = JSON.parse(data).links
