@@ -1,6 +1,5 @@
 const fs = require('fs')
 const path = require('path')
-const website = process.argv[2].toUpperCase()
 const jsonFilePath = path.join(
   __dirname,
   '..',
