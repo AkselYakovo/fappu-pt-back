@@ -38,6 +38,12 @@ function saveEntryToFile(website, entry, appendToOldEntries) {
 function entryExists(entry) {
   let entries
 
+  const jsonFilePath = path.join(
+    __dirname,
+    '..',
+    'collections',
+    `${website.toUpperCase()}.json`
+  )
   const data = fs.readFileSync(jsonFilePath, { encoding: 'utf8' })
   entries = JSON.parse(data)
 
@@ -53,6 +59,13 @@ function entryExists(entry) {
 
 function appendNewSet(entryIndex, newEntry) {
   let entries, entryToBeUpdated, newScrappedSet
+
+  const jsonFilePath = path.join(
+    __dirname,
+    '..',
+    'collections',
+    `${website.toUpperCase()}.json`
+  )
   const data = fs.readFileSync(jsonFilePath, { encoding: 'utf8' })
   entries = JSON.parse(data)
 
@@ -76,6 +89,13 @@ function appendNewSet(entryIndex, newEntry) {
 
 function saveNewEntry(entry) {
   let entries, index, newEntry
+
+  const jsonFilePath = path.join(
+    __dirname,
+    '..',
+    'collections',
+    `${website.toUpperCase()}.json`
+  )
   const data = fs.readFileSync(jsonFilePath, { encoding: 'utf8' })
   entries = JSON.parse(data)
 
