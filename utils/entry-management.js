@@ -2,7 +2,6 @@ const fs = require('fs')
 const path = require('path')
 const { env } = require('process')
 
-const website = process.argv[2].toUpperCase()
 // const filePath = path.join(__dirname, 'txt', `${website}_links.txt`)
 // const txtFilePath = path.join(__dirname, '../', 'txt', `${website}_links.txt`)
 function saveEntryToFile(website, entry, appendToOldEntries) {
