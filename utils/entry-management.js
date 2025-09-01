@@ -4,14 +4,7 @@ const { env } = require('process')
 
 const website = process.argv[2].toUpperCase()
 // const filePath = path.join(__dirname, 'txt', `${website}_links.txt`)
-const jsonFilePath = path.join(
-  __dirname,
-  '..',
-  'collections',
-  `${website}.json`
-)
 // const txtFilePath = path.join(__dirname, '../', 'txt', `${website}_links.txt`)
-
 function saveEntryToFile(website, entry, appendToOldEntries) {
   if (website == '' || !website || typeof website !== 'string') {
     throw new Error('Argument must be a valid String')
