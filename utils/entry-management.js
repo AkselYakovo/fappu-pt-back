@@ -35,7 +35,7 @@ function saveEntryToFile(website, entry, appendToOldEntries) {
   }
 }
 
-function entryExists(entry) {
+function entryExists(website, entry) {
   let entries
 
   const jsonFilePath = path.join(
@@ -57,7 +57,7 @@ function entryExists(entry) {
   return false
 }
 
-function appendNewSet(entryIndex, newEntry) {
+function appendNewSet(website, entryIndex, newEntry) {
   let entries, entryToBeUpdated, newScrappedSet
 
   const jsonFilePath = path.join(
@@ -87,7 +87,7 @@ function appendNewSet(entryIndex, newEntry) {
   return true
 }
 
-function saveNewEntry(entry) {
+function saveNewEntry(website, entry) {
   let entries, index, newEntry
 
   const jsonFilePath = path.join(
