@@ -3,14 +3,14 @@ const path = require('path')
 
 function rewriteFaultyIndexes(website) {
   let numChanges = 0
+  const jsonFilePath = path.join(
+    __dirname,
+    '..',
+    'collections',
+    `${website}.json`
+  )
   const data = fs.readFileSync(jsonFilePath, { encoding: 'utf8' })
   const entries = JSON.parse(data).links
-  const jsonFilePath = path.join(
-  __dirname,
-  '..',
-  'collections',
-  `${website}.json`
-)
 
   for (let i = 0; i < entries.length - 1; i++) {
     const currentRecord = entries[i]
