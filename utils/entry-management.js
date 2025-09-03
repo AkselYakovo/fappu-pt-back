@@ -21,16 +21,16 @@ function saveEntryToFile(website, entry, appendToOldEntries) {
     createJsonCollectionFile(website)
     return true
   } else {
-    entryIndex = entryExists(entry)
+    entryIndex = entryExists(website, entry)
   }
 
   if (!entryIndex) {
-    saveNewEntry(entry)
+    saveNewEntry(website, entry)
     return true
   }
 
   if (entryIndex && appendToOldEntries) {
-    appendNewSet(entryIndex, entry)
+    appendNewSet(website, entryIndex, entry)
     return true
   }
 }

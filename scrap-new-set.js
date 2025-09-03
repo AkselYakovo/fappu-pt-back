@@ -32,7 +32,7 @@ async function run() {
       console.log('New Scrapped Set:', scrappedSet.scrapped_entries)
 
       // console.log('Set appending prevented..')
-      appendNewSet(entryStart, scrappedSet)
+      appendNewSet(website, entryStart, scrappedSet)
       break
     }
 
@@ -70,7 +70,7 @@ async function run() {
     }
 
     // console.log('Set appending prevented..')
-    appendNewSet(i, scrappedSet)
+    appendNewSet(website, i, scrappedSet)
     entriesUpdated++
   }
 
