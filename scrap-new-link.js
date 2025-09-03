@@ -22,7 +22,7 @@ async function run() {
   for await (const line of readInterface) {
     console.log('Grabbing prices for ', line)
 
-    if (entryExists(line)) {
+    if (entryExists(website, line)) {
       console.log('Link already exists..')
       continue
     }
