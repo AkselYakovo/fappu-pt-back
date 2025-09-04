@@ -16,7 +16,7 @@ function rewriteFaultyIndexes(website) {
     const currentRecord = entries[i]
     const nextRecord = entries[i + 1]
 
-    if (nextRecord.index !== currentRecord + 1) {
+    if (nextRecord.index !== currentRecord.index + 1) {
       nextRecord.index = currentRecord.index + 1
       numChanges++
     }
