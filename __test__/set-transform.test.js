@@ -115,6 +115,51 @@ describe('Set transformation utilities', () => {
     expect(set).toEqual(normalizedSet)
   })
 
+  it('normalizes the scrapped set into the standarized form (multiple months as days case)', () => {
+    const initialSet = [
+      {
+        duration: '12',
+        type: 'Month',
+        price: '119.99',
+        includesDownloads: true
+      },
+      {
+        duration: '2',
+        type: 'Day',
+        price: '1.00',
+        includesDownloads: false
+      },
+      {
+        duration: '90',
+        type: 'Day',
+        price: '39.99',
+        includesDownloads: false
+      }
+    ]
+    const set = normalizeSet(initialSet)
+    const normalizedSet = [
+      {
+        duration: '1',
+        type: 'Year',
+        price: '119.99',
+        includesDownloads: true
+      },
+      {
+        duration: '2',
+        type: 'Day',
+        price: '1.00',
+        includesDownloads: false
+      },
+      {
+        duration: '3',
+        type: 'Month',
+        price: '39.99',
+        includesDownloads: false
+      }
+    ]
+    expect(set).toEqual(normalizedSet)
+  })
+
   it('normalizes the scrapped set into the standarized form (more than 12 months case)', () => {
     const initialSet = [
       {
