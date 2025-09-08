@@ -84,6 +84,11 @@ function normalizeSet(setArray) {
         if (Number.parseInt(currentSet.duration) == 30) {
           type = 'Month'
           duration = '1'
+        } else if (
+          Number.isInteger(Number.parseInt(currentSet.duration) / 30)
+        ) {
+          type = 'Month'
+          duration = `${Number.parseInt(currentSet.duration) / 30}`
         }
 
         transformedScrap = {
