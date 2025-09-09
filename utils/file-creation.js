@@ -60,6 +60,57 @@ function createInfoFile(data) {
   return true
 }
 
+function createBackupFile(website) {
+  const jsonFilePath = path.join(
+    __dirname,
+    '..',
+    'collections',
+    `${website.toUpperCase()}.json`
+  )
+  const trailingDate = new Date()
+    .toLocaleDateString('en-US', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    })
+    .replaceAll('/', '-')
+  const newBackupFile = website + '_' + trailingDate
+  const backupDir = path.join(__dirname, '..', 'backup')
+
+  const fileList = fs.readdirSync(backupDir)
+  const backupFile = fileList.find((filename) =>
+    new RegExp(`^${website}_`, 'i').test(filename)
+  )
+
+  if (backupFile) {
+    try {
+      fs.unlinkSync(path.join(backupDir, backupFile))
+    } catch (e) {
+      console.log(
+        'An error occured while trying to delete the already existing backup file.'
+      )
+      return false
+    }
+
+    console.log('The previous backup file has been deleted.')
+  }
+
+  try {
+    fs.copyFileSync(jsonFilePath, path.join(backupDir, `${newBackupFile}.json`))
+  } catch (e) {
+    console.log(
+      'An error occured while trying to copy the current collection file for ' +
+        website
+    )
+    console.log(e)
+    return false
+  }
+
+  console.log(`A backup file for '${website}' was created.`)
+
+  return true
+}
+
 async function createTextCollectionFile(website) {
   if (website == '' || !website || typeof website !== 'string') {
     throw new Error('Argument must be a valid String')
