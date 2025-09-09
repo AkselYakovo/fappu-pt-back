@@ -191,5 +191,6 @@ async function createTextCollectionFile(website) {
 module.exports = {
   createTextCollectionFile,
   createJsonCollectionFile,
+  createBackupFile,
   createInfoFile
 }
