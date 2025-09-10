@@ -3,6 +3,7 @@ const fs = require('fs')
 const {
   createInfoFile,
   createJsonCollectionFile,
+  createBackupFile
 } = require('../utils/file-creation.js')
 
 describe('Creation of a new info file', () => {
@@ -95,5 +96,40 @@ describe('Creation of a new Collection file', () => {
     } catch (e) {
       expect(true).toBe(true)
     }
+  })
+})
+
+describe('Creation of backup file', () => {
+  const website = 'TEST'
+  const trailingDate = new Date()
+    .toLocaleDateString('en-US', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    })
+    .replaceAll('/', '-')
+  const backupDir = path.join(__dirname, '..', 'backup')
+  const jsonFilePath = path.join(
+    __dirname,
+    '..',
+    'collections',
+    `${website.toUpperCase()}.json`
+  )
+
+  /** CREATE `TEST.json` FILE */
+  fs.writeFileSync(jsonFilePath, 'undefined', { encoding: 'utf-8' })
+
+  test('Creates backup file correctly', () => {
+    createBackupFile(website)
+    const backupDirFiles = fs.readdirSync(backupDir)
+    const backupFilename = backupDirFiles.find((filename) =>
+      new RegExp(website, 'i').test(filename)
+    )
+
+    expect(backupFilename).toBe(website + '_' + trailingDate + '.json')
+
+    /** REMOVE CREATED TEST FILES */
+    fs.unlinkSync(jsonFilePath)
+    fs.unlinkSync(path.join(backupDir, backupFilename))
   })
 })
