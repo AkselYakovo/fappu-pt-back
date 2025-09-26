@@ -1,3 +1,4 @@
+require('dotenv').config()
 const readLine = require('readline')
 const fs = require('fs')
 const path = require('path')
