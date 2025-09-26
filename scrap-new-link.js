@@ -29,8 +29,6 @@ async function run() {
     }
 
     const data = await scrapPrices(line)
-    // console.log('Entry indexing prevented. (THIS IS A TEST RUN)')
-    // console.log('final data:', data);
 
     console.log('final scrapped prices', data.scrapped_entries, '\n')
 
