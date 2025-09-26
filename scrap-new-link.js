@@ -34,8 +34,20 @@ async function run() {
 
     console.log('final scrapped prices', data.scrapped_entries, '\n')
 
-    if (data.scrapped_entries.length) saveEntryToFile(website, data, false)
+    if (process.env.MODE === 'APPEND') {
+      if (!data.scrapped_entries.length) {
+        console.log('Empty set detected, avoiding appending..')
+        return
+      }
 
-    else console.log('Empty set detected, avoiding appending..')
+      saveEntryToFile(website, data, false)
+    } else if (process.env.MODE === 'READ') {
+      console.log(
+        'Mode is currently set to READ; Scrapped data WILL NOT be stored into file',
+        '\n'
+      )
+    } else {
+      console.log('MODE does not have a valid value (APPEND/READ).')
+    }
   }
 }
