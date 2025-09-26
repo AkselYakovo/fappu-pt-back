@@ -33,7 +33,14 @@ async function run() {
       console.log('New Scrapped Set:', scrappedSet.scrapped_entries)
 
       // console.log('Set appending prevented..')
-      appendNewSet(website, entryStart, scrappedSet)
+      if (process.env.MODE === 'APPEND') {
+        appendNewSet(website, entryStart, scrappedSet)
+      } else if (process.env.MODE === 'READ') {
+        console.log('MODE is set to READ. Data appending prevented.', '\n')
+      } else {
+        console.log('MODE does not have a valid value (APPEND/READ).')
+      }
+
       break
     }
 
@@ -71,7 +78,14 @@ async function run() {
     }
 
     // console.log('Set appending prevented..')
-    appendNewSet(website, i, scrappedSet)
+    if (process.env.MODE === 'APPEND') {
+      appendNewSet(website, i, scrappedSet)
+    } else if (process.env.MODE === 'READ') {
+      console.log('MODE is set to READ. Data appending prevented.', '\n')
+    } else {
+      console.log('MODE does not have a valid value (APPEND/READ).')
+    }
+
     entriesUpdated++
   }
 
