@@ -32,7 +32,6 @@ async function run() {
       scrappedSet = await scrapPrices(entry.link)
       console.log('New Scrapped Set:', scrappedSet.scrapped_entries)
 
-      // console.log('Set appending prevented..')
       if (process.env.MODE === 'APPEND') {
         appendNewSet(website, entryStart, scrappedSet)
       } else if (process.env.MODE === 'READ') {
@@ -77,7 +76,6 @@ async function run() {
       continue
     }
 
-    // console.log('Set appending prevented..')
     if (process.env.MODE === 'APPEND') {
       appendNewSet(website, i, scrappedSet)
     } else if (process.env.MODE === 'READ') {
