@@ -1,3 +1,4 @@
+require('dotenv').config()
 const path = require('path')
 const { scrapPrices } = require('./utils/price-scrapper')
 const { appendNewSet } = require('./utils/entry-management')
