@@ -6,14 +6,14 @@ const {
 const website = process.argv[2].toUpperCase()
 
 async function run() {
-  createTextCollectionFile()
-  createJsonCollectionFile()
-  createInfoFile()
   const data = {
     title: website,
     code: website.substring(0, 3)
   }
 
+  createTextCollectionFile(website)
+  createJsonCollectionFile(website)
+  createInfoFile(data)
 }
 
 run()
