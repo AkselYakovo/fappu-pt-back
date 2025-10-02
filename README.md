@@ -1,22 +1,22 @@
-<h1 style="text-align:center;">Fappu's Price Tracker | <em style="color: #B107F9;">Backend</em></h1>
-<small style="display:block; font-family: system-ui; font-weight: bold; font-size: 1.25rem; text-align: center; margin-bottom: .5em">Stack used:</small>
-<ul style="display: flex; justify-content: center; width: 300px; margin: 0 auto; background: transparent; padding: 0; list-style: none;">
-    <li style="padding: 0; margin-right: 5px;">
+<div align="center">
+    <h1>Fappu's Price Tracker | <em>Backend</em></h1>
+    <small>Stack used:</small>
+    <div style="display: flex; justify-content: center; width: 300px; margin: 0 auto; background: transparent; padding: 0; list-style: none;">
+    <span style="padding: 0; margin-right: 5px;">
         <img src="https://raw.githubusercontent.com/devicons/devicon/54cfe13ac10eaa1ef817a343ab0a9437eb3c2e08/icons/jest/jest-plain.svg" style="width: 35px; ">
-    </li>
-    <li style="padding: 0; margin-right: 5px;">
+    </span>
+    <span style="padding: 0; margin-right: 5px;">
         <img src="https://raw.githubusercontent.com/devicons/devicon/54cfe13ac10eaa1ef817a343ab0a9437eb3c2e08/icons/nodejs/nodejs-original.svg" style="width: 35px; height: 35px; ">
-    </li>
-    <li style="padding: 0; margin-right: 5px;">
+    </span>
+    <span style="padding: 0; margin-right: 5px;">
         <img src="https://raw.githubusercontent.com/devicons/devicon/54cfe13ac10eaa1ef817a343ab0a9437eb3c2e08/icons/puppeteer/puppeteer-original.svg" style="width: 35px; height: 35px; overflow: hidden;">
-    </li>
-    <li style="padding: 0;">
+    </span>
+    <span style="padding: 0;">
         <img src="https://raw.githubusercontent.com/devicons/devicon/54cfe13ac10eaa1ef817a343ab0a9437eb3c2e08/icons/express/express-original.svg" style="width: 35px; height: 35px; overflow: hidden;">
-    </li>
-</ul>
+    </span>
+    </div>
+</div>
 
-
----
 ## Description
 *Fappu's Price Tracker* is a specialized front- and backend project used to scrape *certain* websites to get the best bang for the buck. It includes a frontend to view the scraped data in an eye-catching, stylish website which might be used to view the data in different perspectives. The backend, on the other hand, is responsible for the web server and the scraping, parsing, and posterior transformation of data.
 
