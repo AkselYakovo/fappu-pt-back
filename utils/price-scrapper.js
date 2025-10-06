@@ -18,7 +18,7 @@ async function scrapPrices(link) {
   const mockupEmail = 'asd@gmai.co'
   const browser = await puppeteer.launch({
     headless: true,
-    executablePath: '/opt/brave.com/brave/brave',
+    executablePath: process.env.BROWSER_PATH,
     args: ['--blink-settings=imagesEnabled=false']
   })
   const page = await browser.newPage()
