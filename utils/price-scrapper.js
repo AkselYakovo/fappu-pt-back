@@ -1,3 +1,4 @@
+require('dotenv').config()
 const puppeteer = require('puppeteer')
 const { createSet } = require('./set-transform')
 const currentDate = new Date(Date.now()).toLocaleDateString('en-US', {
