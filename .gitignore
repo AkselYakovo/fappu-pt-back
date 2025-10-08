@@ -12,3 +12,6 @@
 
 # Websites information files
 /info/*_info.json
+
+# Configuration file
+.env
