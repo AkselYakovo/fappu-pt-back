@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config({ quiet: true })
 const readLine = require('readline')
 const fs = require('fs')
 const path = require('path')

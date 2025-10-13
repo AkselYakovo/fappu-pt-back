@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config({ quiet: true })
 const path = require('path')
 const { scrapPrices } = require('./utils/price-scrapper')
 const { appendNewSet } = require('./utils/entry-management')
