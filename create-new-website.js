@@ -1,3 +1,4 @@
+const prompt = require('prompt')
 const {
   createTextCollectionFile,
   createJsonCollectionFile,
