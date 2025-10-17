@@ -32,12 +32,13 @@ async function run() {
   })
 
   const data = {
-    title: website,
-    code: website.substring(0, 3)
+    title: web.toUpperCase(),
+    code: website_code.toUpperCase(),
+    url: url.toLowerCase()
   }
 
-  createTextCollectionFile(website)
-  createJsonCollectionFile(website)
+  createTextCollectionFile(data.title)
+  createJsonCollectionFile(data.title)
   createInfoFile(data)
 }
 
