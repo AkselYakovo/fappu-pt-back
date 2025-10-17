@@ -53,13 +53,21 @@ Since git ignores empty directories, it is necessary to create two missing direc
 ```
 
 ### Creating a new website
-The process to create a new website is simple. This consists of using the `create-new-website.js` command followed by the name of the given website in UPPERCASE just as follows:
+The process to create a new website is very simple. This consists of using the `create-new-website.js` command.
 
 ```shell
-/PROJECT-DIRECTORY$ node create-new-website.js WEBSITE
+/PROJECT-DIRECTORY$ node create-new-website.js
 ```
 
-This should create three new files under different directories (these files are local and ignored by Git). Thus, your directory tree should look something like this:
+ This command will trigger a series of prompts that will ask you for more information about the new website about to be created.
+
+```shell
+/PROJECT-DIRECTORY$ node create-new-website.js
+Enter the title of the website: WEBSITE
+...
+```
+
+Once all of the information is gathered three new files will be created under different directories (these files are local and ignored by Git). Thus, your directory tree should look something like this:
 
 ```bash
 /...
