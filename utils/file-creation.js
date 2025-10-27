@@ -188,9 +188,24 @@ async function createTextCollectionFile(website) {
   return
 }
 
+function createIndexFile() {
+  const filePath = path.join(__dirname, '..', 'info', 'websites.json')
+
+  if (!fs.existsSync(filePath)) {
+    fs.writeFileSync(filePath, JSON.stringify({ websites: [] }, null, 2), {
+      encoding: 'utf-8'
+    })
+  } else {
+    throw new Error('Index file already exists')
+  }
+
+  return true
+}
+
 module.exports = {
   createTextCollectionFile,
   createJsonCollectionFile,
   createBackupFile,
+  createIndexFile,
   createInfoFile
 }
