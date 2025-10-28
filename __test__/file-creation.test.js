@@ -3,7 +3,8 @@ const fs = require('fs')
 const {
   createInfoFile,
   createJsonCollectionFile,
-  createBackupFile
+  createBackupFile,
+  createIndexFile
 } = require('../utils/file-creation.js')
 
 describe('Creation of a new info file', () => {
@@ -131,5 +132,38 @@ describe('Creation of backup file', () => {
     /** REMOVE CREATED TEST FILES */
     fs.unlinkSync(jsonFilePath)
     fs.unlinkSync(path.join(backupDir, backupFilename))
+  })
+})
+
+describe('Creation of index file', () => {
+  const filePath = path.join(__dirname, '..', 'info', 'websites.json')
+
+  it('creates the index file', () => {
+    jest.resetModules()
+    jest.mock('fs', () => ({
+      ...jest.requireActual('fs'),
+      existsSync: jest.fn(() => false),
+      writeFileSync: jest.fn()
+    }))
+
+    const fs = require('fs')
+    const { createIndexFile } = require('../utils/file-creation.js')
+
+    const initialData = { websites: [] }
+    const options = { encoding: 'utf-8' }
+
+    createIndexFile()
+
+    expect(fs.writeFileSync).toHaveBeenCalledWith(
+      filePath,
+      JSON.stringify(initialData, null, 2),
+      options
+    )
+
+    jest.clearAllMocks()
+  })
+
+  it('fails to create the index file when it already exists', () => {
+    expect(createIndexFile).toThrow()
   })
 })
