@@ -40,6 +40,7 @@ async function run() {
       }
 
       saveEntryToFile(website, data, false)
+      incrementWebsiteLinksNumber(website)
     } else if (process.env.MODE === 'READ') {
       console.log(
         'Mode is currently set to READ; Scrapped data WILL NOT be stored into file',

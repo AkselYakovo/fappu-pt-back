@@ -41,6 +41,12 @@ async function run() {
     url: url.toLowerCase()
   }
 
+  if (websiteExists(data.title)) {
+    console.log(`“${data.title}” record already exists`)
+    return false
+  }
+
+  addWebsiteToIndex(data.title)
   createTextCollectionFile(data.title)
   createJsonCollectionFile(data.title)
   createInfoFile(data)
