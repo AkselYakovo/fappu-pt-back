@@ -4,6 +4,10 @@ const {
   createJsonCollectionFile,
   createInfoFile
 } = require('./utils/file-creation')
+const {
+  websiteExists,
+  addWebsiteToIndex
+} = require('./utils/website-management')
 
 async function run() {
   prompt.start()

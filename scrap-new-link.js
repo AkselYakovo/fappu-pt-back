@@ -4,6 +4,7 @@ const fs = require('fs')
 const path = require('path')
 const { scrapPrices } = require('./utils/price-scrapper')
 const { saveEntryToFile, entryExists } = require('./utils/entry-management')
+const { incrementWebsiteLinksNumber } = require('./utils/website-management')
 const website = process.argv[2].toUpperCase()
 const filePath = path.join(__dirname, 'txt', `${website}_links.txt`)
 
