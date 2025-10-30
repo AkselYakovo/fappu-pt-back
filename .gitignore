@@ -11,7 +11,7 @@
 /backup/*
 
 # Websites information files
-/info/*_info.json
+/info/*.json
 
 # Configuration file
 .env
