@@ -8,11 +8,10 @@ function getInterval(text) {
     intervalType = interval_type_regex.exec(text)[1]
   }
 
-  if (interval_value_regex.test(text)) {
+  if (intervalType === 'Lifetime') {
+    intervalValue = '1'
+  } else if (interval_value_regex.test(text)) {
     intervalValue = interval_value_regex.exec(text)[1]
-  } else if (/lifetime/i.test(intervalType)) {
-    intervalValue = 1
-    intervalType = 'Litetime'
   } else if (trial_interval_regex.test(text)) {
     intervalValue = 2
     intervalType = 'Day'
