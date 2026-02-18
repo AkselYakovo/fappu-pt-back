@@ -2,6 +2,7 @@ const { getPrice, getInterval, checkForDownloads } = require('./text-parsing')
 
 function createSet(textsArray) {
   const main_text_regex = /^\*+\d{1,2}.*$/
+  const lifetime_text_regex = /^\*+(:?lifetime).*$/i
   const trial_text_regex = /^\*{1,4}.+(:?2 day)/i
   const week_trial_interval_regex = /^\*+full access.*$/i
 
@@ -21,6 +22,7 @@ function createSet(textsArray) {
     if (
       main_text_regex.test(currentText) ||
       trial_text_regex.test(currentText) ||
+      lifetime_text_regex.test(currentText) ||
       week_trial_interval_regex.test(currentText) ||
       checkForDownloads(currentText)
     )
