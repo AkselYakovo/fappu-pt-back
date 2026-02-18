@@ -158,6 +158,15 @@ function normalizeSet(setArray) {
         }
         break
 
+      case 'LIFETIME':
+        transformedScrap = {
+          duration: currentSet.duration,
+          type: currentSet.type,
+          price: price || currentSet.price,
+          includesDownloads
+        }
+        break
+
       default:
         transformedScrap = {
           duration: false,
