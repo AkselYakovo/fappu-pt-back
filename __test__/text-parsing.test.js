@@ -9,8 +9,10 @@ describe('Correct parsing of text data (normal)', () => {
   const oneYearText = '1 Year Membership'
   const downloadText = `12 Month Membership + Downloads, 30 Day Membership + Downloads include Downloads. Access to Downloads expires when Brazzers expires.`
   const priceText = '$27.99 /Month'
-  const trialText = '****Limited access 2 day trial period automatically rebills at $39.99 every 30 days until cancelled'
-  const weekText = '**7 Day Membership initial charge of $7.00 automatically rebilling at $39.99 every 30 day until cancelled.'
+  const trialText =
+    '****Limited access 2 day trial period automatically rebills at $39.99 every 30 days until cancelled'
+  const weekText =
+    '**7 Day Membership initial charge of $7.00 automatically rebilling at $39.99 every 30 day until cancelled.'
 
   it('Parses a monthly interval correctly', () => {
     let interval = getInterval(oneMonthText)
@@ -39,7 +41,7 @@ describe('Correct parsing of text data (normal)', () => {
 
   it('Parses a membership that includes downloads correctly', () => {
     let includesDownloads = checkForDownloads(downloadText)
-    let expectedArray = [{1:'Year'}, {1:'Month'}]
+    let expectedArray = [{ 1: 'Year' }, { 1: 'Month' }]
     expect(includesDownloads).toEqual(expectedArray)
   })
 
@@ -67,5 +69,20 @@ describe('Correct parsing of text data (alternative)', () => {
   it('Parses the price of a membership correclty', () => {
     let price = getPrice(priceText)
     expect(price).toBe('27.99')
+  })
+})
+
+describe('Correct parsing of text data when unusual intervals are encountered', () => {
+  const lifetimeText =
+    '***Lifetime Membership (25 Years) initial charge of $199.99 non-recurring.'
+
+  it('Parses a lifetime interval data correctly', () => {
+    let interval = getInterval(lifetimeText)
+    let price = getPrice(lifetimeText)
+    let hasDownloads = checkForDownloads(lifetimeText)
+
+    expect(interval).toEqual({ type: 'Lifetime', value: '1' })
+    expect(price).toEqual('199.99')
+    expect(hasDownloads).toEqual(false)
   })
 })
