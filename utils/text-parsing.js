@@ -1,6 +1,6 @@
 function getInterval(text) {
   const interval_type_regex = /.*?(year|month|day|lifetime).*/i
-  const interval_value_regex = /(\d{1,2})(?:\s(day|month|year))/i
+  const interval_value_regex = /(\d{1,3})(?:\s(day|month|year))/i
   const trial_interval_regex = /^\*{1,4}.*?(?:2 day).*/i
   let intervalType, intervalValue
 
