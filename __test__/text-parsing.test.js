@@ -75,6 +75,7 @@ describe('Correct parsing of text data (alternative)', () => {
 describe('Correct parsing of text data when unusual intervals are encountered', () => {
   const lifetimeText =
     '***Lifetime Membership (25 Years) initial charge of $199.99 non-recurring.'
+  const eighteenMonthsAsDaysText = '*540 days Membership initial charge of $119.99'
 
   it('Parses a lifetime interval data correctly', () => {
     let interval = getInterval(lifetimeText)
@@ -83,6 +84,16 @@ describe('Correct parsing of text data when unusual intervals are encountered', 
 
     expect(interval).toEqual({ type: 'Lifetime', value: '1' })
     expect(price).toEqual('199.99')
+    expect(hasDownloads).toEqual(false)
+  })
+
+  it('Parses three-digit day interval correctly', () => {
+    let interval = getInterval(eighteenMonthsAsDaysText)
+    let price = getPrice(eighteenMonthsAsDaysText)
+    let hasDownloads = checkForDownloads(eighteenMonthsAsDaysText)
+
+    expect(interval).toEqual({ type: 'Day', value: '540' })
+    expect(price).toEqual('119.99')
     expect(hasDownloads).toEqual(false)
   })
 })
