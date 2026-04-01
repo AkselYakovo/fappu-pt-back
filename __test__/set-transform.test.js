@@ -5,22 +5,125 @@ const {
 } = require('../utils/set-transform')
 
 describe('Set creation', () => {
-  const textArray = [
-    'DOWNLOADS INCLUDED',
-    '1 YEAR MEMBERSHIP',
-    'Billed in one payment of $119.99'
-  ]
-
-  it('correctly creates a set given a valid array of texts', () => {
-    const set = createSet(textArray)
-    expect(set).toEqual[
-      {
-        interval: 'Year',
-        duration: '1',
-        price: '119.99',
-        hasDownloads: true
-      }
+  it('correctly creates a set (no downloads | common intervals)', () => {
+    const textArray = [
+      '*Limited access 2 day trial period automatically rebilling at $39.99',
+      '**12 Month Membership initial charge of $59.99 automatically rebills at $119.99',
+      '*30 Day Membership initial charge of $19.99 automatically rebilling at $39.99'
     ]
+    const set = createSet(textArray)
+
+    expect(set).toEqual([
+      {
+        type: 'Day',
+        duration: '2',
+        price: '1.00',
+        includesDownloads: false
+      },
+      {
+        type: 'Year',
+        duration: '1',
+        price: '59.99',
+        includesDownloads: false
+      },
+      {
+        type: 'Month',
+        duration: '1',
+        price: '19.99',
+        includesDownloads: false
+      }
+    ])
+  })
+
+  it('correctly creates a set (w/ downloads | common intervals)', () => {
+    const textArray = [
+      '*Limited access 2 day trial period automatically rebilling at $39.99',
+      '**12 Month Membership initial charge of $59.99 automatically rebills at $119.99',
+      '*30 Day Membership initial charge of $19.99 automatically rebilling at $39.99',
+      '30 Day Membership + Downloads, 12 Month Membership + Downloads include Downloads. Access to Downloads expires'
+    ]
+    const set = createSet(textArray)
+
+    expect(set).toEqual([
+      {
+        type: 'Day',
+        duration: '2',
+        price: '1.00',
+        includesDownloads: false
+      },
+      {
+        type: 'Year',
+        duration: '1',
+        price: '59.99',
+        includesDownloads: true
+      },
+      {
+        type: 'Month',
+        duration: '1',
+        price: '19.99',
+        includesDownloads: true
+      }
+    ])
+  })
+
+  it('correctly creates a set (no downloads | uncommon intervals #1)', () => {
+    const textArray = [
+      '*Limited access 2 day trial period automatically rebilling at $39.99',
+      '**18 Month Membership initial charge of $119.99 automatically rebills at $119.99',
+      '*90 Day Membership initial charge of $54.99 automatically rebilling at $54.99'
+    ]
+    const set = createSet(textArray)
+
+    expect(set).toEqual([
+      {
+        type: 'Day',
+        duration: '2',
+        price: '1.00',
+        includesDownloads: false
+      },
+      {
+        type: 'Month',
+        duration: '18',
+        price: '119.99',
+        includesDownloads: false
+      },
+      {
+        type: 'Month',
+        duration: '3',
+        price: '54.99',
+        includesDownloads: false
+      }
+    ])
+  })
+
+  it('correctly creates a set (no downloads | uncommon intervals #2)', () => {
+    const textArray = [
+      '*Lifetime Membership initial charge of $199.99 with no rebilling',
+      '**540 Day Membership initial charge of $119.99 automatically rebills at $119.99',
+      '*180 Day Membership initial charge of $59.99 automatically rebilling at $59.99'
+    ]
+    const set = createSet(textArray)
+
+    expect(set).toEqual([
+      {
+        type: 'Lifetime',
+        duration: '1',
+        price: '199.99',
+        includesDownloads: false
+      },
+      {
+        type: 'Month',
+        duration: '18',
+        price: '119.99',
+        includesDownloads: false
+      },
+      {
+        type: 'Month',
+        duration: '6',
+        price: '59.99',
+        includesDownloads: false
+      }
+    ])
   })
 })
 
