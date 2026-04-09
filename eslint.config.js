@@ -6,7 +6,6 @@ module.exports = {
     'no-regex-spaces': 'error',
     'semi': ['warn', 'never'],
     'quotes': ['warn', 'single'],
-    'no-unused-vars': 'error',
     'no-trailing-spaces': 'error',
   },
 }
