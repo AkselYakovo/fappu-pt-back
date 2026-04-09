@@ -47,7 +47,9 @@ app.get('/websites', (req, res) => {
       res.end()
       return
     }
-    res.json(data)
+
+    const websites = JSON.parse(data)
+    res.json(websites)
   })
 })
 
