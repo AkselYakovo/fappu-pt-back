@@ -39,10 +39,10 @@ To initialize the web server, simply type in the following line in your terminal
 The codebase is intended to be used in the form of commands that are executed in the terminal of your choice. One example could be as follows:
 
 ```shell
-/PROJECT-DIRECTORY$ node scrap-new-link.js WEBSITE
+/PROJECT-DIRECTORY$ node scrape-new-link.js WEBSITE
 ```
 
-Some files can take parameters to decide what and where to execute a given process. One clear example of this is when using the `scrap-new-link.js` which will require a single parameter passed as an uppercase string of a given website that already exists within `/collections` (passing a non-existing website name yields an error).
+Some files can take parameters to decide what and where to execute a given process. One clear example of this is when using the `scrape-new-link.js` which will require a single parameter passed as an uppercase string of a given website that already exists within `/collections` (passing a non-existing website name yields an error).
 
 ## Getting Started
 ### Creating missing directories
@@ -86,14 +86,14 @@ Great, now we can move on to scraping some data!
 
 ### Scraping
 There will be two main commands used for data scraping:
-- `scrap-new-link.js` - Used to add a new record into a collection file
-- `scrap-new-set.js` - Used to scrap data from an already existing entry
+- `scrape-new-link.js` - Used to add a new record into a collection file
+- `scrape-new-set.js` - Used to scrape data from an already existing entry
 
 <h4>Scraping a new link</h4>
 Let's begin running the first command (remember, `WEBSITE` MUST match the name of the text file previously created):
 
 ```shell
-/PROJECT-DIRECTORY$ node scrap-new-link.js WEBSITE
+/PROJECT-DIRECTORY$ node scrape-new-link.js WEBSITE
 ```
 
 This command will look up a text file under `/txt` named `WEBSITE_links.txt` and read each line as a new link address. Then it will try to run a puppeter session over the browser currently in use in the `.env` variable `BROWSER_PATH`. After it correctly detects a valid web page, it will try to read and parse data; if it succeeds, this newly scraped data will be transformed further into the valid format to be stored inside `/collections/WEBSITE.json`.
@@ -133,7 +133,7 @@ This is the data that gets appended into each collection record.
 
 <h4>Scraping a new set</h4>
 
-Sets are what gets posteriorly scraped once there are records inside a collection file. For this we'll use the `scrap-new-set.js` command with the following syntax:
+Sets are what gets posteriorly scraped once there are records inside a collection file. For this we'll use the `scrape-new-set.js` command with the following syntax:
 
 ```shell
 /PROJECT-DIRECTORY$ node create-new-set.js WEBSITE START <END>
@@ -141,4 +141,4 @@ Sets are what gets posteriorly scraped once there are records inside a collectio
 
 This command takes up to three parameters: the first one is self-explanatory `WEBSITE`, which refers to the collections file with the same name as this parameter; the second one, `START` is the record number where the command should begin to scrape a new set of data; and the last one `END` is an OPTIONAL last parameter that marks the final record number that will be scraped. When omitted, the command will solely try to scrape a single set from the record designated by the `START` parameter.
 
-The output should be the same as when using `scrap-new-link.js` with the addition of multiple sets of scraped data being printed to screen.
+The output should be the same as when using `scrape-new-link.js` with the addition of multiple sets of scraped data being printed to screen.
