@@ -1,4 +1,4 @@
-const { scrapPrices } = require('../utils/price-scrapper')
+const { scrapPrices } = require('../utils/price-scraper')
 
 const linksWithDownloads = [
   'https://landing.bangbrosnetwork.com/?ats=eyJhIjo1Mjg3LCJjIjoxMzk5OSwibiI6MTMwLCJzIjo2OTMsImUiOjEwNjczLCJwIjoyfQ%3D%3D',
