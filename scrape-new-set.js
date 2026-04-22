@@ -1,6 +1,6 @@
 require('dotenv').config({ quiet: true })
 const path = require('path')
-const { scrapPrices } = require('./utils/price-scrapper')
+const { scrapPrices } = require('./utils/price-scraper')
 const { appendNewSet } = require('./utils/entry-management')
 const { readFileSync } = require('fs')
 const website = process.argv[2].toUpperCase()
