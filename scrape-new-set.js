@@ -24,13 +24,13 @@ async function run() {
   entries = JSON.parse(data).links
 
   if ((entryStart || entryStart === 0) && !entryEnd) {
-    console.log(`Scrapping new set for existing entry #${entryStart}..`)
+    console.log(`Scraping new set for existing entry #${entryStart}..`)
 
     for (let entry of entries) {
       if (entry.index !== entryStart) continue
-      console.log('Scrapping Link: ', entry.link)
+      console.log('Scraping Link: ', entry.link)
       scrappedSet = await scrapPrices(entry.link)
-      console.log('New Scrapped Set:', scrappedSet.scrapped_entries)
+      console.log('New Scraped Set:', scrappedSet.scrapped_entries)
 
       if (process.env.MODE === 'APPEND') {
         appendNewSet(website, entryStart, scrappedSet)
@@ -45,7 +45,7 @@ async function run() {
 
     if (!scrappedSet.scrapped_entries.length)
       throw new Error(
-        `It was not possible to scrap a new set for the given index(${entryStart})`
+        `It was not possible to scrape a new set for the given index(${entryStart})`
       )
 
     return
@@ -62,16 +62,16 @@ async function run() {
     }
 
     console.log(
-      `Scrapping new set for existing entry #${i} (${entriesUpdated}/${entriesToBeUpdated})`
+      `Scraping new set for existing entry #${i} (${entriesUpdated}/${entriesToBeUpdated})`
     )
     console.log(`Link: ${currentEntry.link}`)
 
     scrappedSet = await scrapPrices(currentEntry.link)
-    console.log('New Scrapped Set:', scrappedSet.scrapped_entries)
+    console.log('New Scraped Set:', scrappedSet.scrapped_entries)
 
     if (!scrappedSet.scrapped_entries.length) {
       console.log(
-        `It was not possible to scrap a new set for the given index(${entryStart})`
+        `It was not possible to scrape a new set for the given index(${entryStart})`
       )
       continue
     }

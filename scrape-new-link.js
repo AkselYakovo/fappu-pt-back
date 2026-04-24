@@ -31,7 +31,7 @@ async function run() {
 
     const data = await scrapPrices(line)
 
-    console.log('final scrapped prices', data.scrapped_entries, '\n')
+    console.log('final scraped prices', data.scrapped_entries, '\n')
 
     if (process.env.MODE === 'APPEND') {
       if (!data.scrapped_entries.length) {
