@@ -145,7 +145,7 @@ async function createTextCollectionFile(website) {
   })
   const page = await browser.newPage()
 
-  console.log('Trying to scrap links from: ', url)
+  console.log('Trying to scrape links from: ', url)
 
   await page.setViewport({ width: 520, height: 480 })
   await page.goto(url)
