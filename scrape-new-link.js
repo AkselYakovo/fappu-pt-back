@@ -2,7 +2,7 @@ require('dotenv').config({ quiet: true })
 const readLine = require('readline')
 const fs = require('fs')
 const path = require('path')
-const { scrapPrices } = require('./utils/price-scraper')
+const { scrapePrices } = require('./utils/price-scraper')
 const { saveEntryToFile, entryExists } = require('./utils/entry-management')
 const { incrementWebsiteLinksNumber } = require('./utils/website-management')
 const website = process.argv[2].toUpperCase()
@@ -29,12 +29,12 @@ async function run() {
       continue
     }
 
-    const data = await scrapPrices(line)
+    const data = await scrapePrices(line)
 
-    console.log('final scraped prices', data.scrapped_entries, '\n')
+    console.log('final scraped prices', data.scraped_entries, '\n')
 
     if (process.env.MODE === 'APPEND') {
-      if (!data.scrapped_entries.length) {
+      if (!data.scraped_entries.length) {
         console.log('Empty set detected, avoiding appending..')
         return
       }
@@ -43,7 +43,7 @@ async function run() {
       incrementWebsiteLinksNumber(website)
     } else if (process.env.MODE === 'READ') {
       console.log(
-        'Mode is currently set to READ; Scrapped data WILL NOT be stored into file',
+        'Mode is currently set to READ; Scraped data WILL NOT be stored into file',
         '\n'
       )
     } else {

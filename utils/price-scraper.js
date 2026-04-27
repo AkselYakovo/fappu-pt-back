@@ -7,8 +7,8 @@ const currentDate = new Date(Date.now()).toLocaleDateString('en-US', {
   year: '2-digit'
 })
 
-async function scrapPrices(link) {
-  let scrapped_set = [],
+async function scrapePrices(link) {
+  let scraped_set = [],
     emailScreenExists = false,
     buttonIsDisabled = false,
     thirdNode = null
@@ -119,7 +119,7 @@ async function scrapPrices(link) {
       return Array.from(elements).map((div) => div.textContent)
     })
 
-    scrapped_set = createSet(divs)
+    scraped_set = createSet(divs)
   } catch (error) {
     console.log(error)
     await browser.close()
@@ -133,9 +133,9 @@ async function scrapPrices(link) {
   return {
     link,
     promo_image_src: thirdNode.imageSource,
-    scrapped_date: currentDate,
-    scrapped_entries: scrapped_set
+    scraped_date: currentDate,
+    scraped_entries: scraped_set
   }
 }
 
-module.exports.scrapPrices = scrapPrices
+module.exports.scrapePrices = scrapePrices

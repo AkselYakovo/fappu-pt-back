@@ -44,14 +44,14 @@ function createSet(textsArray) {
     if (getPrice(currentText)) price = getPrice(currentText)
 
     if (interval && price) {
-      let scrappedData = {
+      let scrapedData = {
         duration: interval.value,
         type: interval.type,
         price,
         includesDownloads: false
       }
 
-      set.push(scrappedData)
+      set.push(scrapedData)
 
       includesDownloads = null
       price = null
@@ -72,7 +72,7 @@ function createSet(textsArray) {
 
 function normalizeSet(setArray) {
   let newSet = [],
-    transformedScrap = {}
+    transformedScrape = {}
 
   for (let i = 0; i < setArray.length; i++) {
     const currentSet = setArray[i]
@@ -93,7 +93,7 @@ function normalizeSet(setArray) {
           duration = `${Number.parseInt(currentSet.duration) / 30}`
         }
 
-        transformedScrap = {
+        transformedScrape = {
           duration: duration || currentSet.duration,
           type: type || currentSet.type,
           price: currentSet.price,
@@ -133,7 +133,7 @@ function normalizeSet(setArray) {
           // }
         }
 
-        transformedScrap = {
+        transformedScrape = {
           duration: duration || currentSet.duration,
           type: type || currentSet.type,
           price: price || currentSet.price,
@@ -150,7 +150,7 @@ function normalizeSet(setArray) {
             .toString()
             .concat('.99')
 
-        transformedScrap = {
+        transformedScrape = {
           duration: currentSet.duration,
           type: currentSet.type,
           price: price || currentSet.price,
@@ -159,7 +159,7 @@ function normalizeSet(setArray) {
         break
 
       case 'LIFETIME':
-        transformedScrap = {
+        transformedScrape = {
           duration: currentSet.duration,
           type: currentSet.type,
           price: price || currentSet.price,
@@ -168,7 +168,7 @@ function normalizeSet(setArray) {
         break
 
       default:
-        transformedScrap = {
+        transformedScrape = {
           duration: false,
           type: false,
           price: false,
@@ -177,7 +177,7 @@ function normalizeSet(setArray) {
         break
     }
 
-    newSet.push(transformedScrap)
+    newSet.push(transformedScrape)
   }
   return newSet
 }
@@ -190,25 +190,25 @@ function appendDownloads(set, intervalsWithDownloads) {
     type = interval[duration]
     if (type === 'Month') lookUpRepeated = true
     for (let i = 0; i < set.length; i++) {
-      const currentScrap = set[i]
+      const currentScrape = set[i]
 
       if (lookUpRepeated) {
         for (let j = i + 1; j < set.length; j++) {
-          const nextScrap = set[j]
-          if (nextScrap.type === 'Month' && nextScrap.duration == duration) {
+          const nextScrape = set[j]
+          if (nextScrape.type === 'Month' && nextScrape.duration == duration) {
             if (
-              Number.parseInt(nextScrap.price) >
-              Number.parseInt(currentScrap.price)
+              Number.parseInt(nextScrape.price) >
+              Number.parseInt(currentScrape.price)
             )
-              nextScrap.includesDownloads = true
-            else currentScrap.includesDownloads = true
+              nextScrape.includesDownloads = true
+            else currentScrape.includesDownloads = true
           }
         }
         continue
       }
 
-      if (currentScrap.type == type && currentScrap.duration == duration) {
-        currentScrap.includesDownloads = true
+      if (currentScrape.type == type && currentScrape.duration == duration) {
+        currentScrape.includesDownloads = true
         break
       }
     }

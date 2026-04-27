@@ -1,6 +1,6 @@
 require('dotenv').config({ quiet: true })
 const path = require('path')
-const { scrapPrices } = require('./utils/price-scraper')
+const { scrapePrices } = require('./utils/price-scraper')
 const { appendNewSet } = require('./utils/entry-management')
 const { readFileSync } = require('fs')
 const website = process.argv[2].toUpperCase()
@@ -15,7 +15,7 @@ run()
 
 async function run() {
   let entries,
-    scrappedSet,
+    scrapedSet,
     entriesUpdated = 0,
     entriesToBeUpdated = entryEnd - entryStart + 1
   const data = readFileSync(filePath, { encoding: 'utf-8' })
@@ -29,11 +29,11 @@ async function run() {
     for (let entry of entries) {
       if (entry.index !== entryStart) continue
       console.log('Scraping Link: ', entry.link)
-      scrappedSet = await scrapPrices(entry.link)
-      console.log('New Scraped Set:', scrappedSet.scrapped_entries)
+      scrapedSet = await scrapePrices(entry.link)
+      console.log('New Scraped Set:', scrapedSet.scraped_entries)
 
       if (process.env.MODE === 'APPEND') {
-        appendNewSet(website, entryStart, scrappedSet)
+        appendNewSet(website, entryStart, scrapedSet)
       } else if (process.env.MODE === 'READ') {
         console.log('MODE is set to READ. Data appending prevented.', '\n')
       } else {
@@ -43,7 +43,7 @@ async function run() {
       break
     }
 
-    if (!scrappedSet.scrapped_entries.length)
+    if (!scrapedSet.scraped_entries.length)
       throw new Error(
         `It was not possible to scrape a new set for the given index(${entryStart})`
       )
@@ -66,10 +66,10 @@ async function run() {
     )
     console.log(`Link: ${currentEntry.link}`)
 
-    scrappedSet = await scrapPrices(currentEntry.link)
-    console.log('New Scraped Set:', scrappedSet.scrapped_entries)
+    scrapedSet = await scrapePrices(currentEntry.link)
+    console.log('New Scraped Set:', scrapedSet.scraped_entries)
 
-    if (!scrappedSet.scrapped_entries.length) {
+    if (!scrapedSet.scraped_entries.length) {
       console.log(
         `It was not possible to scrape a new set for the given index(${entryStart})`
       )
@@ -77,7 +77,7 @@ async function run() {
     }
 
     if (process.env.MODE === 'APPEND') {
-      appendNewSet(website, i, scrappedSet)
+      appendNewSet(website, i, scrapedSet)
     } else if (process.env.MODE === 'READ') {
       console.log('MODE is set to READ. Data appending prevented.', '\n')
     } else {
