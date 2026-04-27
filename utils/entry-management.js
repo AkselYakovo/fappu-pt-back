@@ -58,7 +58,7 @@ function entryExists(website, entry) {
 }
 
 function appendNewSet(website, entryIndex, newEntry) {
-  let entries, entryToBeUpdated, newScrappedSet
+  let entries, entryToBeUpdated, newScrapedSet
 
   const jsonFilePath = path.join(
     __dirname,
@@ -69,16 +69,16 @@ function appendNewSet(website, entryIndex, newEntry) {
   const data = fs.readFileSync(jsonFilePath, { encoding: 'utf8' })
   entries = JSON.parse(data)
 
-  newScrappedSet = {
-    scrapped_on: newEntry.scrapped_date,
-    scrapped_entries: newEntry.scrapped_entries
+  newScrapedSet = {
+    scraped_on: newEntry.scraped_date,
+    scraped_entries: newEntry.scraped_entries
   }
   // entryToBeUpdated = entries.links[entryIndex]
   entryToBeUpdated = entries.links.find((item) => item.index === entryIndex)
 
-  currentScrappedSet = entryToBeUpdated.scrap_index
+  currentScrapedSet = entryToBeUpdated.scrape_index
   // console.log(entryToBeUpdated.scrap_index)
-  entryToBeUpdated.scrap_index = [newScrappedSet, ...currentScrappedSet]
+  entryToBeUpdated.scrape_index = [newScrapedSet, ...currentScrapedSet]
 
   fs.writeFileSync(jsonFilePath, JSON.stringify(entries, null, 2), {
     encoding: 'utf8'
@@ -104,11 +104,11 @@ function saveNewEntry(website, entry) {
     index,
     promo_image_src: entry.promo_image_src,
     link: entry.link,
-    created_on: entry.scrapped_date,
-    scrap_index: [
+    created_on: entry.scraped_date,
+    scrape_index: [
       {
-        scrapped_on: entry.scrapped_date,
-        scrapped_entries: [...entry.scrapped_entries]
+        scraped_on: entry.scraped_date,
+        scraped_entries: [...entry.scraped_entries]
       }
     ]
   }
