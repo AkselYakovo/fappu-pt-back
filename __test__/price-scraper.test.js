@@ -10,7 +10,7 @@ const linksWithoutDownloads = [
   ''
 ]
 
-describe('Scrap prices correctly', () => {
+describe('Scrape prices correctly', () => {
   test('BANGBROS link (w/ Downloads)', async () => {
     const link = links[0]
     const scrappedSet = await scrapPrices(link)
