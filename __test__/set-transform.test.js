@@ -128,7 +128,7 @@ describe('Set creation', () => {
 })
 
 describe('Set transformation utilities', () => {
-  it('normalizes the scrapped set into the standarized form', () => {
+  it('normalizes the scraped set into the standarized form', () => {
     const initialSet = [
       {
         duration: '12',
@@ -173,7 +173,7 @@ describe('Set transformation utilities', () => {
     expect(set).toEqual(normalizedSet)
   })
 
-  it('normalizes the scrapped set into the standarized form (multiple months case)', () => {
+  it('normalizes the scraped set into the standarized form (multiple months case)', () => {
     const initialSet = [
       {
         duration: '12',
@@ -218,7 +218,7 @@ describe('Set transformation utilities', () => {
     expect(set).toEqual(normalizedSet)
   })
 
-  it('normalizes the scrapped set into the standarized form (multiple months as days case)', () => {
+  it('normalizes the scraped set into the standarized form (multiple months as days case)', () => {
     const initialSet = [
       {
         duration: '12',
@@ -263,7 +263,7 @@ describe('Set transformation utilities', () => {
     expect(set).toEqual(normalizedSet)
   })
 
-  it('normalizes the scrapped set into the standarized form (more than 12 months case)', () => {
+  it('normalizes the scraped set into the standarized form (more than 12 months case)', () => {
     const initialSet = [
       {
         duration: '18',
@@ -308,7 +308,7 @@ describe('Set transformation utilities', () => {
     expect(set).toEqual(normalizedSet)
   })
 
-  it('Appends the downloads options to the correct scrapped intervals', () => {
+  it('Appends the downloads options to the correct scraped intervals', () => {
     const initialSet = [
       {
         duration: '1',
@@ -354,7 +354,7 @@ describe('Set transformation utilities', () => {
     expect(initialSet).toEqual(transformedSet)
   })
 
-  it('Appends the downloads options to the correct scrapped intervals (repeated intervals w/ different prices)', () => {
+  it('Appends the downloads options to the correct scraped intervals (repeated intervals w/ different prices)', () => {
     const initialSet = [
       {
         duration: '1',
@@ -400,7 +400,7 @@ describe('Set transformation utilities', () => {
     expect(initialSet).toEqual(transformedSet)
   })
 
-  it('Appends the downloads options to the correct scrapped intervals (repeated intervals w/ different prices & cheaper first)', () => {
+  it('Appends the downloads options to the correct scraped intervals (repeated intervals w/ different prices & cheaper first)', () => {
     const initialSet = [
       {
         duration: '1',
