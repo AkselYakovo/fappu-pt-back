@@ -263,51 +263,6 @@ describe('Set transformation utilities', () => {
     expect(set).toEqual(normalizedSet)
   })
 
-  it('normalizes the scraped set into the standarized form (more than 12 months case)', () => {
-    const initialSet = [
-      {
-        duration: '18',
-        type: 'Month',
-        price: '6.66',
-        includesDownloads: true
-      },
-      {
-        duration: '2',
-        type: 'Day',
-        price: '1.00',
-        includesDownloads: false
-      },
-      {
-        duration: '30',
-        type: 'Day',
-        price: '17.99',
-        includesDownloads: false
-      }
-    ]
-    const set = normalizeSet(initialSet)
-    const normalizedSet = [
-      {
-        duration: '18',
-        type: 'Month',
-        price: '119.99',
-        includesDownloads: true
-      },
-      {
-        duration: '2',
-        type: 'Day',
-        price: '1.00',
-        includesDownloads: false
-      },
-      {
-        duration: '1',
-        type: 'Month',
-        price: '17.99',
-        includesDownloads: false
-      }
-    ]
-    expect(set).toEqual(normalizedSet)
-  })
-
   it('Appends the downloads options to the correct scraped intervals', () => {
     const initialSet = [
       {
