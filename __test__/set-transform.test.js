@@ -178,7 +178,7 @@ describe('Set transformation utilities', () => {
       {
         duration: '12',
         type: 'month',
-        price: '9.99',
+        price: '119.99',
         includesDownloads: true
       },
       {
@@ -190,7 +190,7 @@ describe('Set transformation utilities', () => {
       {
         duration: '3',
         type: 'Month',
-        price: '17.99',
+        price: '59.99',
         includesDownloads: false
       }
     ]
@@ -211,7 +211,7 @@ describe('Set transformation utilities', () => {
       {
         duration: '3',
         type: 'Month',
-        price: '53.99',
+        price: '59.99',
         includesDownloads: false
       }
     ]
