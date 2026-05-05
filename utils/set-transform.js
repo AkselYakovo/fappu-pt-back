@@ -215,4 +215,41 @@ function appendDownloads(set, intervalsWithDownloads) {
   }
 }
 
+function segmentSet(intervalSet) {
+  let intervalCollection
+
+  const daysIntervals = []
+  const monthsIntervals = []
+  const yearsIntervals = []
+  const lifetimeIntervals = []
+
+  for (let interval of intervalSet) {
+    const type = interval.type
+    switch (type) {
+      case 'Day':
+        daysIntervals.push(interval)
+        break
+
+      case 'Month':
+        monthsIntervals.push(interval)
+        break
+
+      case 'Year':
+        yearsIntervals.push(interval)
+        break
+
+      case 'Lifetime':
+        lifetimeIntervals.push(interval)
+        break
+
+      default:
+        break
+    }
+  }
+
+  intervalCollection = [daysIntervals, monthsIntervals, yearsIntervals, lifetimeIntervals]
+
+  return intervalCollection.filter(set => set.length)
+}
+
 module.exports = { createSet, normalizeSet, appendDownloads }
