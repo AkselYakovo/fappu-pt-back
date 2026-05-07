@@ -247,28 +247,28 @@ function segmentSet(intervalSet) {
     }
   }
 
-  intervalCollection = [daysIntervals, monthsIntervals, yearsIntervals, lifetimeIntervals]
+  intervalCollection = [
+    daysIntervals,
+    monthsIntervals,
+    yearsIntervals,
+    lifetimeIntervals
+  ]
 
-  return intervalCollection.filter(set => set.length)
+  return intervalCollection.filter((set) => set.length)
 }
 
 function sortSets(sets) {
   const sortedSets = []
 
-  if (!sets.length)
-    throw new Error('Segments Arrays are empty')
+  if (!sets.length) throw new Error('Segments Arrays are empty')
 
-  for(const set of sets) {
+  for (const set of sets) {
     const sortedSet = set.sort((a, b) => {
-      if (a.duration > b.duration)
-        return 1
-      else if (a.duration < b.duration)
-        return -1
+      if (a.duration > b.duration) return 1
+      else if (a.duration < b.duration) return -1
       else if (a.duration === b.duration) {
-        if (a.price > b.price)
-          return 1
-        else
-          return -1
+        if (a.price > b.price) return 1
+        else return -1
       }
     })
 
@@ -278,4 +278,10 @@ function sortSets(sets) {
   return sortedSets.flat()
 }
 
-module.exports = { createSet, normalizeSet, appendDownloads }
+module.exports = {
+  createSet,
+  sortSets,
+  segmentSet,
+  normalizeSet,
+  appendDownloads
+}
