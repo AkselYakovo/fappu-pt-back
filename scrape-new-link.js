@@ -31,6 +31,9 @@ async function run() {
     }
 
     const data = await scrapePrices(line)
+    sortedSet = segmentSet(data.scraped_entries)
+    sortedSet = sortSets(sortedSet)
+    data.scraped_entries = sortedSet
 
     console.log('final scraped prices', data.scraped_entries, '\n')
 

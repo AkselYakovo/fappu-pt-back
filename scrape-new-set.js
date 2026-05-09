@@ -31,6 +31,9 @@ async function run() {
       if (entry.index !== entryStart) continue
       console.log('Scraping Link: ', entry.link)
       scrapedSet = await scrapePrices(entry.link)
+      sortedSet = segmentSet(scrapedSet.scraped_entries)
+      sortedSet = sortSets(sortedSet)
+      scrapedSet.scraped_entries = sortedSet
       console.log('New Scraped Set:', scrapedSet.scraped_entries)
 
       if (process.env.MODE === 'APPEND') {
@@ -68,6 +71,9 @@ async function run() {
     console.log(`Link: ${currentEntry.link}`)
 
     scrapedSet = await scrapePrices(currentEntry.link)
+    sortedSet = segmentSet(scrapedSet.scraped_entries)
+    sortedSet = sortSets(sortedSet)
+    scrapedSet.scraped_entries = sortedSet
     console.log('New Scraped Set:', scrapedSet.scraped_entries)
 
     if (!scrapedSet.scraped_entries.length) {
