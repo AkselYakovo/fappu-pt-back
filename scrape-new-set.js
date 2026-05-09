@@ -3,6 +3,7 @@ const path = require('path')
 const { scrapePrices } = require('./utils/price-scraper')
 const { appendNewSet } = require('./utils/entry-management')
 const { readFileSync } = require('fs')
+const { segmentSet, sortSets } = require('./utils/set-transform')
 const website = process.argv[2].toUpperCase()
 const entryStart = Number.parseInt(process.argv[3])
 const entryEnd = process.argv[4] ? Number.parseInt(process.argv[4]) : null

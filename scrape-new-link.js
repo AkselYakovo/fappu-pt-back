@@ -5,6 +5,7 @@ const path = require('path')
 const { scrapePrices } = require('./utils/price-scraper')
 const { saveEntryToFile, entryExists } = require('./utils/entry-management')
 const { incrementWebsiteLinksNumber } = require('./utils/website-management')
+const { segmentSet, sortSets } = require('./utils/set-transform')
 const website = process.argv[2].toUpperCase()
 const filePath = path.join(__dirname, 'txt', `${website}_links.txt`)
 
