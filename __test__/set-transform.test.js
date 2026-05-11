@@ -1,5 +1,7 @@
 const {
+  sortSets,
   createSet,
+  segmentSet,
   normalizeSet,
   appendDownloads
 } = require('../utils/set-transform')
@@ -399,5 +401,334 @@ describe('Set transformation utilities', () => {
     const intervalsWithDownloads = [{ 1: 'Year' }, { 1: 'Month' }]
     appendDownloads(initialSet, intervalsWithDownloads)
     expect(initialSet).toEqual(transformedSet)
+  })
+
+  it('Segments intervals correctly (normal case)', () => {
+    let segmentedSets
+
+    const initialSet = [
+      {
+        duration: '1',
+        type: 'Year',
+        price: '121.99',
+        includesDownloads: true
+      },
+      {
+        duration: '1',
+        type: 'Month',
+        price: '17.99',
+        includesDownloads: false
+      },
+      {
+        duration: '1',
+        type: 'Month',
+        price: '24.99',
+        includesDownloads: true
+      },
+      {
+        duration: '2',
+        type: 'Day',
+        price: '7.99',
+        includesDownloads: false
+      }
+    ]
+
+    const expectedSegments = [
+      [
+        {
+          duration: '2',
+          type: 'Day',
+          price: '7.99',
+          includesDownloads: false
+        }
+      ],
+      [
+        {
+          duration: '1',
+          type: 'Month',
+          price: '17.99',
+          includesDownloads: false
+        },
+        {
+          duration: '1',
+          type: 'Month',
+          price: '24.99',
+          includesDownloads: true
+        }
+      ],
+      [
+        {
+          duration: '1',
+          type: 'Year',
+          price: '121.99',
+          includesDownloads: true
+        }
+      ]
+    ]
+
+    segmentedSets = segmentSet(initialSet)
+    expect(segmentedSets).toStrictEqual(expectedSegments)
+  })
+
+  it('Segments intervals correctly (multiple month intervals)', () => {
+    let segmentedSets
+
+    const initialSet = [
+      {
+        duration: '18',
+        type: 'Month',
+        price: '141.99',
+        includesDownloads: true
+      },
+      {
+        duration: '3',
+        type: 'Month',
+        price: '53.99',
+        includesDownloads: false
+      },
+      {
+        duration: '1',
+        type: 'Month',
+        price: '24.99',
+        includesDownloads: true
+      },
+      {
+        duration: '2',
+        type: 'Day',
+        price: '7.99',
+        includesDownloads: false
+      }
+    ]
+
+    const expectedSegments = [
+      [
+        {
+          duration: '2',
+          type: 'Day',
+          price: '7.99',
+          includesDownloads: false
+        }
+      ],
+      [
+        {
+          duration: '18',
+          type: 'Month',
+          price: '141.99',
+          includesDownloads: true
+        },
+        {
+          duration: '3',
+          type: 'Month',
+          price: '53.99',
+          includesDownloads: false
+        },
+        {
+          duration: '1',
+          type: 'Month',
+          price: '24.99',
+          includesDownloads: true
+        }
+      ]
+    ]
+
+    segmentedSets = segmentSet(initialSet)
+    expect(segmentedSets).toStrictEqual(expectedSegments)
+  })
+
+  it('Segments intervals correctly (lifetime case)', () => {
+    let segmentedSets
+
+    const initialSet = [
+      {
+        duration: '1',
+        type: 'Year',
+        price: '119.99',
+        includesDownloads: false
+      },
+      {
+        duration: '1',
+        type: 'Lifetime',
+        price: '199.99',
+        includesDownloads: false
+      },
+      {
+        duration: '1',
+        type: 'Month',
+        price: '14.99',
+        includesDownloads: true
+      },
+      {
+        duration: '2',
+        type: 'Day',
+        price: '7.99',
+        includesDownloads: false
+      }
+    ]
+
+    const expectedSegments = [
+      [
+        {
+          duration: '2',
+          type: 'Day',
+          price: '7.99',
+          includesDownloads: false
+        }
+      ],
+      [
+        {
+          duration: '1',
+          type: 'Month',
+          price: '14.99',
+          includesDownloads: true
+        }
+      ],
+      [
+        {
+          duration: '1',
+          type: 'Year',
+          price: '119.99',
+          includesDownloads: false
+        }
+      ],
+      [
+        {
+          duration: '1',
+          type: 'Lifetime',
+          price: '199.99',
+          includesDownloads: false
+        }
+      ]
+    ]
+
+    segmentedSets = segmentSet(initialSet)
+    expect(segmentedSets).toStrictEqual(expectedSegments)
+  })
+
+  it('Sorts the segmented sets correctly', () => {
+    let sortedSet
+
+    const segmentedSets = [
+      [
+        {
+          duration: '2',
+          type: 'Day',
+          price: '1.99',
+          includesDownloads: false
+        },
+        {
+          duration: '7',
+          type: 'Day',
+          price: '7.00',
+          includesDownloads: false
+        }
+      ],
+      [
+        {
+          duration: '3',
+          type: 'Month',
+          price: '53.99',
+          includesDownloads: false
+        },
+        {
+          duration: '1',
+          type: 'Month',
+          price: '14.99',
+          includesDownloads: true
+        }
+      ]
+    ]
+
+    const expectedSet = [
+      {
+        duration: '2',
+        type: 'Day',
+        price: '1.99',
+        includesDownloads: false
+      },
+      {
+        duration: '7',
+        type: 'Day',
+        price: '7.00',
+        includesDownloads: false
+      },
+      {
+        duration: '1',
+        type: 'Month',
+        price: '14.99',
+        includesDownloads: true
+      },
+      {
+        duration: '3',
+        type: 'Month',
+        price: '53.99',
+        includesDownloads: false
+      }
+    ]
+
+    sortedSet = sortSets(segmentedSets)
+    expect(sortedSet).toStrictEqual(expectedSet)
+  })
+
+  it('Segments & sorts a given set', () => {
+    let segmentedSets, sortedSet
+
+    const initialSet = [
+        {
+          duration: '1',
+          type: 'Year',
+          price: '119.99',
+          includesDownloads: true
+        },
+        {
+          duration: '1',
+          type: 'Month',
+          price: '14.99',
+          includesDownloads: false
+        },
+        {
+          duration: '7',
+          type: 'Day',
+          price: '7.00',
+          includesDownloads: false
+        },
+        {
+          duration: '2',
+          type: 'Day',
+          price: '1.99',
+          includesDownloads: false
+        }
+    ]
+
+    const expectedSet = [
+      {
+        duration: '2',
+        type: 'Day',
+        price: '1.99',
+        includesDownloads: false
+      },
+      {
+        duration: '7',
+        type: 'Day',
+        price: '7.00',
+        includesDownloads: false
+      },
+      {
+        duration: '1',
+        type: 'Month',
+        price: '14.99',
+        includesDownloads: false
+      },
+      {
+        duration: '1',
+        type: 'Year',
+        price: '119.99',
+        includesDownloads: true
+      }
+    ]
+
+    segmentedSets = segmentSet(initialSet)
+    sortedSet = sortSets(segmentedSets)
+
+    expect(sortedSet).toStrictEqual(expectedSet)
   })
 })
