@@ -8,7 +8,7 @@ const port = 3031
 
 app.use(function (req, res, next) {
   res.setHeader('access-control-allow-origin', process.env.FRONT_WEB)
-  res.setHeader('access-control-allow-headers', 'Content-Type')
+  res.setHeader('access-control-allow-headers', 'Content-Type, Origin')
   res.setHeader('access-control-allow-credentials', 'true')
   next()
 })
