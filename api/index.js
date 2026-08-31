@@ -138,5 +138,9 @@ app.get('*', (req, res) => {
   res.end('404 - ' + req.url + ' not found')
 })
 
-app.listen(port)
-console.log(`Server on port ${port} up and running!`)
+if (process.env.ENVIRONMENT === 'DEV') {
+  app.listen(port)
+  console.log(`Server on port ${port} up and running!`)
+} else if (process.env.ENVIRONMENT === 'PROD') {
+  module.exports = app
+}
