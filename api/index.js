@@ -41,7 +41,9 @@ app.post('/login/user', (req, res) => {
 
 /** GET */
 app.get('/websites', (req, res) => {
-  fs.readFile('./info/websites.json', 'utf8', (err, data) => {
+  const filePath = path.join(__dirname, '..', 'info', 'websites.json')
+
+  fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
       res.statusCode = 501
       res.end()
