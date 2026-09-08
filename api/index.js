@@ -84,7 +84,7 @@ app.get('/website/:id/records', (req, res) => {
     if (err) throw new Error(err)
 
     let websiteInfo = JSON.parse(data)
-    let firstTen = { links: websiteInfo.links.slice(0, 10)}
+    let firstTen = { links: websiteInfo.links.slice(0, 10) }
     res.json(firstTen)
     return
   })
@@ -105,7 +105,9 @@ app.get('/website/:id/records/:pageNumber', (req, res) => {
     if (err) throw new Error(err)
 
     let websiteInfo = JSON.parse(data)
-    let tenRecords = { links: websiteInfo.links.slice(initialRecord, initialRecord + 10)}
+    let tenRecords = {
+      links: websiteInfo.links.slice(initialRecord, initialRecord + 10)
+    }
     res.json(tenRecords)
     return
   })
@@ -124,7 +126,7 @@ app.get('/website/:id/record/:recordID', (req, res) => {
     if (err) throw new Error(err)
 
     let websiteInfo = JSON.parse(data)
-    let recordInfo = websiteInfo.links.find(link => link.index === recordID)
+    let recordInfo = websiteInfo.links.find((link) => link.index === recordID)
     if (!recordInfo) {
       res.statusCode = 403
       return
